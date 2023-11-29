@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <!--  Light Theme  -->
+    <Color
+        x:Key="LightFirstColor">
+        White
+    </Color>
+    <Color
+        x:Key="LightSecondColor">
+        #E8E8E8
+    </Color>
+    <Color
+        x:Key="LightThirdColor">
+        #C8C8C8
+    </Color>
+    <Color
+        x:Key="LightFourthColor">
+        #808080
+    </Color>
+    <Color
+        x:Key="LightFifthColor">
+        #8ca0c9
+    </Color>
+    <Color
+        x:Key="LightSixthColor">
+        #606060
+    </Color>
+    <Color
+        x:Key="LightSeventhColor">
+        #1f2d60
+    </Color>
+    <Color
+        x:Key="LightEightColor">
+        #404040
+    </Color>
+    <Color
+        x:Key="LightNinthColor">
+        #141414
+    </Color>
+    <Color
+        x:Key="LightTenthColor">
+        Black
+    </Color>
+
+    <Color
+        x:Key="LightBackModalBlurColor">
+        #80808080
+    </Color>
+    <Color
+        x:Key="LightButtonColor">
+        #A9A9A9
+    </Color>
+    <Color
+        x:Key="LightButtonRedColor">
+        Red
+    </Color>
+    <Color
+        x:Key="LightButtonGreenColor">
+        Green
+    </Color>
+    <Color
+        x:Key="LightHighlightColor">
+        #d60328
+    </Color>
+    <Color
+        x:Key="LightSecondColorHighlight">
+        #F8D4CF
+    </Color>
+
+
+    <!--  Dark Theme  -->
+    <Color
+        x:Key="DarkFirstColor">
+        White
+    </Color>
+    <Color
+        x:Key="DarkSecondColor">
+        #E8E8E8
+    </Color>
+    <Color
+        x:Key="DarkThirdColor">
+        #C8C8C8
+    </Color>
+    <Color
+        x:Key="DarkFourthColor">
+        #808080
+    </Color>
+    <Color
+        x:Key="DarkFifthColor">
+        #8ca0c9
+    </Color>
+    <Color
+        x:Key="DarkSixthColor">
+        #606060
+    </Color>
+    <Color
+        x:Key="DarkSeventhColor">
+        #1f2d60
+    </Color>
+    <Color
+        x:Key="DarkEightColor">
+        #404040
+    </Color>
+    <Color
+        x:Key="DarkNinthColor">
+        #141414
+    </Color>
+    <Color
+        x:Key="DarkTenthColor">
+        Black
+    </Color>
+
+    <Color
+        x:Key="DarkBackModalBlurColor">
+        #80808080
+    </Color>
+    <Color
+        x:Key="DarkButtonColor">
+        #A9A9A9
+    </Color>
+    <Color
+        x:Key="DarkButtonRedColor">
+        Red
+    </Color>
+    <Color
+        x:Key="DarkButtonGreenColor">
+        Green
+    </Color>
+    <Color
+        x:Key="DarkHighlightColor">
+        #d60328
+    </Color>
+    <Color
+        x:Key="DarkSecondColorHighlight">
+        #F8D4CF
+    </Color>
+
+
+    <!--  By Theme  -->
+
+</ResourceDictionary>

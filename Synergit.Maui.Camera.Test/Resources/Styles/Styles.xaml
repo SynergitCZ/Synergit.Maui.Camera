@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <!--  Border  -->
+    <Style
+        TargetType="Border">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="StrokeShape" Value="Rectangle" />
+        <Setter Property="StrokeThickness" Value="1" />
+    </Style>
+
+    <Style
+        x:Key="FabsPageTitleBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 5,5,5,5" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+    </Style>
+
+    <Style
+        x:Key="FabsHighlightBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="2,6,4,6" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HeightRequest" Value="35" />
+        <Setter Property="WidthRequest" Value="35" />
+        <Setter Property="StrokeShape" Value="Ellipse 50,50" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" />
+    </Style>
+
+    <Style
+        x:Key="FabsFrameTitleSpaceBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="4,-1" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 0,0,0,0" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="17" />
+        <Setter Property="VerticalOptions" Value="StartAndExpand" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+    </Style>
+
+    <Style
+        x:Key="FabsFrameTitleBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="4,-1" />
+        <Setter Property="Padding" Value="1,0,1,0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 5,5,0,0" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+        <Setter Property="HeightRequest" Value="17" />
+        <Setter Property="VerticalOptions" Value="StartAndExpand" />
+    </Style>
+
+    <Style
+        x:Key="FabsFrameWithTitleBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="4,0,4,2" />
+        <Setter Property="Padding" Value="12,4,12,8" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 5,0,5,5" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+    </Style>
+
+    <Style
+        x:Key="FabsBarcodeReaderBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="10,10" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 5,5,5,5" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightHighlightColor}, Dark={StaticResource DarkHighlightColor}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+    </Style>
+
+
+    <!--  Button  -->
+    <Style
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup
+                    x:Name="CommonStates">
+                    <VisualState
+                        x:Name="Normal" />
+                    <VisualState
+                        x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightNinthColor}, Dark={StaticResource DarkNinthColor}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightSecondColor}, Dark={StaticResource DarkSecondColor}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="FabsTextButtonStyle"
+        TargetType="Button">
+        <Setter Property="Margin" Value="4,6" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="Padding" Value="5,2" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+        <Setter Property="MinimumHeightRequest" Value="50" />
+    </Style>
+
+
+    <!--  ContentPage  -->
+    <Style
+        x:Key="FabsContentPageStyle"
+        TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Title" Value="" />
+        <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+        <Setter Property="NavigationPage.HasBackButton" Value="False" />
+    </Style>
+
+
+    <!--  Grid  -->
+    <Style
+        TargetType="Grid">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style
+        x:Key="FabsMainGridStyle"
+        TargetType="Grid">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style
+        x:Key="FabsNavigationBarGridStyle"
+        TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="{OnPlatform Default='8,0,8,0', Android='0,0,0,0'}" />
+        <Setter Property="HeightRequest" Value="52" />
+    </Style>
+
+    <Style
+        x:Key="FabsFrameWithTitleGridStyle"
+        TargetType="Grid">
+        <Setter Property="Padding" Value="0,6,0,2" />
+    </Style>
+
+    <Style
+        x:Key="FabsContentGridStyle"
+        TargetType="Grid">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="4,4,4,4" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+    </Style>
+
+    <!--  Image  -->
+    <Style
+        x:Key="FabsBackButtonImageStyle"
+        TargetType="Image">
+        <Setter Property="Margin" Value="0,0,16,0" />
+        <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="Source" Value="back.png" />
+    </Style>
+
+    <Style
+        x:Key="FabsTitleLogoStyle"
+        TargetType="Image">
+        <Setter Property="Margin" Value="16,0,0,0" />
+        <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="Source" Value="fabs_logo.png" />
+    </Style>
+
+
+    <!--  Label  -->
+    <Style
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightEightColor}, Dark={StaticResource DarkEightColor}}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup
+                    x:Name="CommonStates">
+                    <VisualState
+                        x:Name="Normal" />
+                    <VisualState
+                        x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightFourthColor}, Dark={StaticResource DarkFourthColor}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="FabsPageTitleLabelStyle"
+        TargetType="Label">
+        <Setter Property="Margin" Value="6,0" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+    </Style>
+
+    <Style
+        x:Key="FabsHighlightLabelStyle"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightFirstColor}, Dark={StaticResource DarkFirstColor}}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style
+        x:Key="FabsFrameTitleLabelStyle"
+        TargetType="Label">
+        <Setter Property="Margin" Value="6,0,6,0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="VerticalTextAlignment" Value="Start" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Italic" />
+        <Setter Property="TextTransform" Value="None" />
+    </Style>
+
+    <Style
+        x:Key="FabsFadedBlueTextLabelStyle"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontAttributes" Value="Italic" />
+    </Style>
+
+    <Style
+        x:Key="FabsBlueTextLabelStyle"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSeventhColor}, Dark={StaticResource DarkSeventhColor}}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage
+    x:Class="Synergit.Maui.Camera.Test.Views.BarcodeReaderPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Synergit.Maui.Camera.Test.Views"
+    xmlns:models="clr-namespace:Synergit.Maui.Camera.Test.Models"
+    xmlns:sgmc="clr-namespace:Synergit.Maui.Camera;assembly=Synergit.Maui.Camera"
+    xmlns:viewModels="clr-namespace:Synergit.Maui.Camera.Test.ViewModels"
+    x:DataType="viewModels:BarcodeReaderViewModel"
+    x:TypeArguments="viewModels:BarcodeReaderViewModel"
+    Style="{StaticResource FabsContentPageStyle}">
+
+    <Grid
+        RowDefinitions="Auto,*"
+        Style="{StaticResource FabsMainGridStyle}">
+        <Grid
+            ColumnDefinitions="Auto,*,Auto,Auto,Auto"
+            Style="{StaticResource FabsNavigationBarGridStyle}">
+            <Image
+                Style="{StaticResource FabsBackButtonImageStyle}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="BackButtonTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image
+                Grid.Column="1"
+                Style="{StaticResource FabsTitleLogoStyle}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Style="{StaticResource FabsContentGridStyle}">
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />
+            <Grid
+                IsVisible="{Binding IsBusy, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                RowDefinitions="Auto, *"
+                VerticalOptions="FillAndExpand">
+
+                <Border
+                    Grid.Row="0"
+                    Style="{StaticResource FabsPageTitleBorderStyle}">
+                    <Grid
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto">
+                        <Image
+                            Grid.Column="0"
+                            Source="qr_code_white.png" />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource FabsPageTitleLabelStyle}"
+                            Text="Barcode and QR Code Reader" />
+                    </Grid>
+                </Border>
+
+                <ScrollView
+                    Grid.Row="1">
+                    <VerticalStackLayout>
+                        <Border
+                            Style="{StaticResource FabsBarcodeReaderBorderStyle}">
+                            <sgmc:CameraView
+                                x:Name="CameraView"
+                                Margin="0"
+                                AutoStartPreview="{Binding AutoStartPreview}"
+                                BarCodeOptions="{Binding BarCodeOptions}"
+                                BarCodeResults="{Binding BarCodeResults, Mode=OneWayToSource}"
+                                Camera="{Binding Camera}"
+                                Cameras="{Binding Cameras, Mode=OneWayToSource}"
+                                HeightRequest="300"
+                                HorizontalOptions="Fill"
+                                Loaded="CameraView_Loaded"
+                                TorchEnabled="{Binding IsTorchOn, Mode=OneWay}"
+                                VerticalOptions="Fill"
+                                WidthRequest="200" />
+                        </Border>
+
+                        <Grid
+                            ColumnDefinitions="Auto, Auto, *"
+                            RowDefinitions="Auto, Auto">
+
+                            <Image
+                                x:Name="TorchMode"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,10,20,0"
+                                HorizontalOptions="Start"
+                                Source="{Binding TorchIcon}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TorchMode_Tapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1">
+                                <Label
+                                    Text="Barcode detection" />
+                                <Switch
+                                    IsToggled="{Binding BarCodeDetectionEnabled, Source={x:Reference CameraView}}" />
+                            </VerticalStackLayout>
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                LineBreakMode="WordWrap"
+                                MinimumHeightRequest="50"
+                                Text="{Binding BarcodeText}"
+                                TextColor="Black" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:BasePage>

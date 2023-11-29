@@ -1,0 +1,12 @@
+﻿global using Synergit.Maui.Camera.Test;
+global using Synergit.Maui.Camera.Test.Models;
+global using Synergit.Maui.Camera.Test.Services;
+global using Synergit.Maui.Camera.Test.ViewModels;
+global using Synergit.Maui.Camera.Test.Views;
+global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Diagnostics;
+global using System.Globalization;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json;
+global using System.Threading.Tasks;

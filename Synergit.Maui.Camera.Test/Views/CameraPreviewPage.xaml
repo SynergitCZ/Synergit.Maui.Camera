@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage
+    x:Class="Synergit.Maui.Camera.Test.Views.CameraPreviewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Synergit.Maui.Camera.Test.Views"
+    xmlns:models="clr-namespace:Synergit.Maui.Camera.Test.Models"
+    xmlns:viewModels="clr-namespace:Synergit.Maui.Camera.Test.ViewModels"
+    x:DataType="viewModels:CameraPreviewViewModel"
+    x:TypeArguments="viewModels:CameraPreviewViewModel"
+    Style="{StaticResource FabsContentPageStyle}">
+
+    <Grid
+        RowDefinitions="Auto,*"
+        Style="{StaticResource FabsMainGridStyle}">
+        <Grid
+            ColumnDefinitions="Auto,*,Auto,Auto,Auto"
+            Style="{StaticResource FabsNavigationBarGridStyle}">
+            <Image
+                Style="{StaticResource FabsBackButtonImageStyle}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="BackButtonTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image
+                Grid.Column="1"
+                Style="{StaticResource FabsTitleLogoStyle}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="1">
+
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Image
+                Margin="0"
+                Aspect="AspectFit"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightFirstColor},
+                                                  Dark={StaticResource DarkFirstColor}}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsBusy, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                Source="{Binding Preview, Mode=OneWay, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+    </Grid>
+</local:BasePage>

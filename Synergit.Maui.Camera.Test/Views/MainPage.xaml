@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage
+    x:Class="Synergit.Maui.Camera.Test.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Synergit.Maui.Camera.Test.Views"
+    xmlns:models="clr-namespace:Synergit.Maui.Camera.Test.Models"
+    xmlns:viewModels="clr-namespace:Synergit.Maui.Camera.Test.ViewModels"
+    x:DataType="viewModels:MainPageViewModel"
+    x:TypeArguments="viewModels:MainPageViewModel"
+    Style="{StaticResource FabsContentPageStyle}">
+
+    <Grid
+        RowDefinitions="Auto,*"
+        Style="{StaticResource FabsMainGridStyle}">
+        <Grid
+            ColumnDefinitions="*"
+            Style="{StaticResource FabsNavigationBarGridStyle}">
+            <Image
+                Grid.Column="1"
+                Style="{StaticResource FabsTitleLogoStyle}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Style="{StaticResource FabsContentGridStyle}">
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="CenterAndExpand" />
+            <Grid
+                IsVisible="{Binding IsBusy, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                RowDefinitions="Auto, *"
+                VerticalOptions="FillAndExpand">
+
+                <Border
+                    Grid.Row="0"
+                    Style="{StaticResource FabsPageTitleBorderStyle}">
+                    <Grid
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto">
+                        <Image
+                            Grid.Column="0"
+                            Source="camera_white.png" />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource FabsPageTitleLabelStyle}"
+                            Text="Synergit Maui Camera TEST" />
+                    </Grid>
+                </Border>
+
+                <ScrollView
+                    Grid.Row="1">
+                    <VerticalStackLayout>
+
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="DarkRed"
+                            Clicked="TakePhoto_Clicked"
+                            ImageSource="camera.png"
+                            Style="{StaticResource FabsTextButtonStyle}"
+                            Text="Take Photo" />
+
+                        <Grid
+                            Style="{StaticResource FabsFrameWithTitleGridStyle}">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ZIndex="1">
+                                <Border
+                                    Grid.Column="0"
+                                    Style="{StaticResource FabsFrameTitleSpaceBorderStyle}" />
+                                <Border
+                                    Grid.Column="1"
+                                    Style="{StaticResource FabsFrameTitleBorderStyle}">
+                                    <Label
+                                        Style="{StaticResource FabsFrameTitleLabelStyle}"
+                                        Text="Captured Photos" />
+                                </Border>
+                            </Grid>
+                            <Grid
+                                RowDefinitions="Auto,*"
+                                ZIndex="2">
+                                <Border
+                                    Grid.Row="0"
+                                    Style="{StaticResource FabsFrameTitleSpaceBorderStyle}" />
+                                <Border
+                                    Grid.Row="1"
+                                    Style="{StaticResource FabsFrameWithTitleBorderStyle}">
+                                    <VerticalStackLayout
+                                        BindableLayout.ItemsSource="{Binding AttachmentList}"
+                                        MinimumHeightRequest="10"
+                                        Spacing="6">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate
+                                                x:DataType="models:Attachment">
+                                                <Grid
+                                                    ColumnDefinitions="Auto,*,Auto"
+                                                    ColumnSpacing="5"
+                                                    RowDefinitions="Auto">
+                                                    <Image
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        IsEnabled="{Binding AlreadySaved, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                                                        Opacity="{Binding Opacity}"
+                                                        Source="preview.png">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding PreviewAttachmentCommand}" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Padding="0"
+                                                        IsVisible="{Binding AlreadySaved, Converter={StaticResource ToBoolConverter}, ConverterParameter='Normal'}"
+                                                        LineBreakMode="TailTruncation"
+                                                        Style="{StaticResource FabsFadedBlueTextLabelStyle}"
+                                                        Text="{Binding Name}" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Padding="0"
+                                                        IsVisible="{Binding AlreadySaved, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                                                        LineBreakMode="TailTruncation"
+                                                        Style="{StaticResource FabsBlueTextLabelStyle}"
+                                                        Text="{Binding Name}" />
+                                                    <Image
+                                                        Grid.Row="0"
+                                                        Grid.Column="2"
+                                                        IsVisible="{Binding AlreadySaved, Converter={StaticResource ToBoolConverter}, ConverterParameter='NormalNegated'}"
+                                                        Source="clear.png">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding DeleteAttachmentCommand}" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </Grid>
+
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="DarkRed"
+                            Clicked="BarcodeDetect_Clicked"
+                            ImageSource="qr_code.png"
+                            Style="{StaticResource FabsTextButtonStyle}"
+                            Text="Barcode and QR Code Reader " />
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</local:BasePage>
