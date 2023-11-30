@@ -78,6 +78,11 @@
 	  <ApplicationId>synergit.maui.camera.test</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	  <CodesignKey>Apple Development: Jaromír Honza (4MZR2P25Z8)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -129,6 +134,9 @@
 	  <Compile Update="Views\CameraViewPage.xaml.cs">
 	    <DependentUpon>CameraViewPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\CameraViewMVVMPage.xaml.cs">
+	    <DependentUpon>CameraViewMVVMPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -144,6 +152,11 @@
 	  <MauiXaml Update="Views\CameraViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CameraViewMVVMPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionSynergitMauiCameraTestHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

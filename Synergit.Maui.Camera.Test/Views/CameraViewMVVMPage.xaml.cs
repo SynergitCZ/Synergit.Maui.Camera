@@ -1,40 +1,21 @@
+using System.IO;
+
 namespace Synergit.Maui.Camera.Test.Views;
 
-public partial class CameraViewPage
+public partial class CameraViewMVVMPage
 {
-    private bool isFlashOn = false;
-    private bool hasPreview = false;
-
-    public CameraViewPage(CameraViewViewModel viewModel) : base(viewModel)
+    public CameraViewMVVMPage(CameraViewMVVMViewModel viewModel) : base(viewModel)
     {
         this.InitializeComponent();
-
-        CameraView.CamerasLoaded += CameraView_CamerasLoaded;
     }
 
-    private void CameraView_CamerasLoaded(object sender, EventArgs e)
+    private void CameraView_Loaded(object sender, EventArgs e)
     {
-        if (CameraView.Cameras.Any() && CameraView.Cameras[0] is CameraInfo camera)
-        {
-            CameraView.Camera = camera;
-
-            this.MinZoom = camera.MinZoomFactor;
-            this.MaxZoom = (camera.MaxZoomFactor > 5f) ? 5f : camera.MaxZoomFactor;
-            this.OnPropertyChanged(nameof(this.MinZoom));
-            this.OnPropertyChanged(nameof(this.MaxZoom));
-
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                if (await CameraView.StartCameraAsync() != CameraResult.Success)
-                {
-                    await this.DisplayAlert("Error", "Problem with camera initialization.", "OK");
-                }
-            });
-        }
+        this.BindingContext.CameraLoaded(CameraView);
     }
 
     protected override void OnSizeAllocated(double width, double height)
-    {                                          
+    {                            
         base.OnSizeAllocated(width, height);
 
         if (height > width)
@@ -51,14 +32,15 @@ public partial class CameraViewPage
 
     private async void Capture(object sender, EventArgs e)
     {
-        this.CaptureBtn.IsEnabled = false;
-        this.OkBtn.IsEnabled = false;
+        this.BindingContext.BtnIsEnabled = false;
         try
         {
             var stream = await CameraView.TakePhotoAsync();
             if (stream != null)
             {
-                if (hasPreview)
+                this.BindingContext.SaveSettings();
+
+                if (this.BindingContext.HasPreview)
                 {
                     this.PreviewBorder.IsVisible = true;
                     Preview.RemoveBinding(Image.SourceProperty);
@@ -78,13 +60,13 @@ public partial class CameraViewPage
         }
         finally
         {
-            this.CaptureBtn.IsEnabled = true;
-            this.OkBtn.IsEnabled = true;
+            this.BindingContext.BtnIsEnabled = true;
         }
     }
 
     private async void OkBtn_Clicked(object sender, EventArgs e)
     {
+        this.BindingContext.SaveSettings();
         CameraView.TorchEnabled = false;
         await Task.Delay(100);
         await this.Navigation.PopAsync();
@@ -92,21 +74,17 @@ public partial class CameraViewPage
 
     private void FlashMode_Tapped(object sender, EventArgs e)
     {
-        this.isFlashOn = !this.isFlashOn;
-        this.CameraView.FlashMode = this.isFlashOn ? FlashMode.Enabled : FlashMode.Disabled;
-        this.FlashModeImg.Source = this.isFlashOn ? "flash_on.png" : "flash_off.png";
+        this.BindingContext.IsFlashOn = !this.BindingContext.IsFlashOn;
     }
 
     private void TorchMode_Tapped(object sender, EventArgs e)
     {
-        this.CameraView.TorchEnabled = !this.CameraView.TorchEnabled;
-        this.TorchModeImg.Source = this.CameraView.TorchEnabled ? "torch_on.png" : "torch_off.png";
+        this.BindingContext.IsTorchOn = !this.BindingContext.IsTorchOn;
     }
 
     private void PreviewMode_Tapped(object sender, EventArgs e)
     {
-        this.hasPreview = !this.hasPreview;
-        this.PreviewModeImg.Source = this.hasPreview ? "preview_on.png" : "preview_off.png";
+        this.BindingContext.HasPreview = !this.BindingContext.HasPreview;
     }
 
     private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -118,7 +96,4 @@ public partial class CameraViewPage
             CameraView.ForceAutoFocus();
         }
     }
-
-    public float MinZoom { get; set; }
-    public float MaxZoom { get; set; }
 }

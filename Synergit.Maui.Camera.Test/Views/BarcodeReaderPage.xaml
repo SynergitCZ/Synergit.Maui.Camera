@@ -70,12 +70,12 @@
                                 BarCodeResults="{Binding BarCodeResults, Mode=OneWayToSource}"
                                 Camera="{Binding Camera}"
                                 Cameras="{Binding Cameras, Mode=OneWayToSource}"
-                                HeightRequest="300"
+                                HeightRequest="250"
                                 HorizontalOptions="Fill"
                                 Loaded="CameraView_Loaded"
                                 TorchEnabled="{Binding IsTorchOn, Mode=OneWay}"
                                 VerticalOptions="Fill"
-                                WidthRequest="200" />
+                                WidthRequest="250" />
                         </Border>
 
                         <Grid

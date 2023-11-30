@@ -52,15 +52,23 @@
                 <ScrollView
                     Grid.Row="1">
                     <VerticalStackLayout>
-
-                        <Button
-                            Grid.Column="1"
-                            BackgroundColor="DarkRed"
-                            Clicked="TakePhoto_Clicked"
-                            ImageSource="camera.png"
-                            Style="{StaticResource FabsTextButtonStyle}"
-                            Text="Take Photo" />
-
+                        <Grid
+                            ColumnDefinitions="*,*">
+                            <Button
+                                Grid.Column="0"
+                                BackgroundColor="DarkRed"
+                                Clicked="NormalCamera_Clicked"
+                                ImageSource="camera.png"
+                                Style="{StaticResource FabsTextButtonStyle}"
+                                Text="Normal Camera" />
+                            <Button
+                                Grid.Column="1"
+                                BackgroundColor="DarkRed"
+                                Clicked="MVVMCamera_Clicked"
+                                ImageSource="camera.png"
+                                Style="{StaticResource FabsTextButtonStyle}"
+                                Text="MVVM Camera" />
+                        </Grid>
                         <Grid
                             Style="{StaticResource FabsFrameWithTitleGridStyle}">
                             <Grid
@@ -146,7 +154,7 @@
                             Grid.Column="1"
                             BackgroundColor="DarkRed"
                             Clicked="BarcodeDetect_Clicked"
-                            ImageSource="qr_code.png"
+                            ImageSource="qr_code_white.png"
                             Style="{StaticResource FabsTextButtonStyle}"
                             Text="Barcode and QR Code Reader " />
                     </VerticalStackLayout>
