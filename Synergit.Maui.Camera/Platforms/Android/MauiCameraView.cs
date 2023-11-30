@@ -127,7 +127,8 @@ internal class MauiCameraView: GridLayout
                     cameraInfo.AvailableResolutions.Add(new(352, 288));
                 }
                 cameraView.Cameras.Add(cameraInfo);
-                }
+            }
+            
             if (OperatingSystem.IsAndroidVersionAtLeast(30))
             {
                 cameraView.Microphones.Clear();
@@ -136,6 +137,7 @@ internal class MauiCameraView: GridLayout
                     cameraView.Microphones.Add(new MicrophoneInfo { Name = "Microphone " + device.Type.ToString() + " " + device.Address, DeviceId = device.Id.ToString() });
                 }
             }
+
             executorService = Executors.NewSingleThreadExecutor();
 
             initiated = true;
@@ -170,6 +172,9 @@ internal class MauiCameraView: GridLayout
             if (await CameraView.RequestPermissions())
             {
                 if (started) StopCamera();
+
+                /* On some sloower devices can this be too quick to record a change in device orientation */
+                await Task.Delay(100);
                 if (cameraView.Camera != null)
                 {
                     try
@@ -631,14 +636,18 @@ internal class MauiCameraView: GridLayout
     private static Size ChooseMinVideoSize(Size[] choices)
     {
         Size result = choices[0];
-        int diference = 0;
+        int diference = int.MaxValue;
+        int minSize = 800 * 800 * 4 / 3;
 
         foreach (Size size in choices)
         {
             if (size.Width == size.Height * 4 / 3 && size.Width * size.Height < diference)
             {
+                if (size.Width * size.Height < minSize)
+                    return result;
+
                 result = size;
-                diference = size.Width * size.Height;
+                diference = size.Width * size.Height;         
             }
         }
 
@@ -705,11 +714,6 @@ internal class MauiCameraView: GridLayout
             SurfaceOrientation.Rotation270 => 180,
             _ => 90
         };
-        // Round device orientation to a multiple of 90
-        //deviceOrientation = (deviceOrientation + 45) / 90 * 90;
-
-        // Reverse device orientation for front-facing cameras
-        //if (cameraView.Camera.Position == CameraPosition.Front) deviceOrientation = -deviceOrientation;
 
         // Calculate desired JPEG orientation relative to camera orientation to make
         // the image upright relative to the device orientation

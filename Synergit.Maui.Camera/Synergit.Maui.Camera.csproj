@@ -27,6 +27,8 @@
 		<PackageProjectUrl>https://github.com/SynergitCZ/Synergit.Maui.Camera</PackageProjectUrl>
 		<Version>0.7.0-beta</Version>
 		<Authors>hjam40, Jaromir Honza</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<ItemGroup>

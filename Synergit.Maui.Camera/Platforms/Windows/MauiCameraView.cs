@@ -170,6 +170,7 @@ public sealed partial class MauiCameraView : UserControl, IDisposable
             }
             catch
             {
+                /* swallow errors */
             }
         }
     }
@@ -495,8 +496,9 @@ public sealed partial class MauiCameraView : UserControl, IDisposable
                     snapping = false;
                     return stream;
                 }
-                catch (Exception)
+                catch
                 {
+                    /* swallow errors */
                 }
             }
             snapping = false;
@@ -546,8 +548,9 @@ public sealed partial class MauiCameraView : UserControl, IDisposable
                     snapshot.Dispose();
                     frame.Dispose();
                 }
-                catch (Exception)
+                catch
                 {
+                    /* swallow errors */
                 }
             }
             snapping = false;
